@@ -2,6 +2,8 @@ csv_files/
 csv_files/*
 csv_files
 
+saved_models/
+saved_models/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
