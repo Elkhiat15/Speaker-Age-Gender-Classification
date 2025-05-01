@@ -46,5 +46,3 @@ def extract_features(y, sr):
     ])
 
     return features
-
-print(N_MFCC)
