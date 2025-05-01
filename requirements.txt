@@ -2,3 +2,6 @@ numpy
 pandas 
 librosa 
 scikit-learn 
+torch 
+torchaudio
+tqdm
