@@ -34,8 +34,7 @@ def save_features_in_batches_as_csv(audio_paths, batch_size=32, output_csv='feat
         for audio_path in batch_paths:
             # y, sr = torchaudio.load(audio_path)
             y, resampled_sr = preprocess_audio(audio_path)
-            y_tensor = torch.tensor(y).unsqueeze(0)
-            features = extract_features(y_tensor, resampled_sr)
+            features = extract_features(y, resampled_sr)
             batch_features.append(features)
             voice_id = os.path.basename(audio_path)
             batch_voice_ids.append(voice_id)
