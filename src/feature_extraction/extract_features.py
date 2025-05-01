@@ -4,9 +4,8 @@ import torch
 import numpy as np
 import torchaudio.transforms as T
 
-N_FFT = 1024
-N_MELS = 128
-N_MFCC = 13
+from constants.constants import N_FFT, N_MELS, N_MFCC
+
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -47,3 +46,5 @@ def extract_features(y, sr):
     ])
 
     return features
+
+print(N_MFCC)
