@@ -1,6 +1,8 @@
 import os
 import joblib
 import natsort
+import pandas as pd
+from constants.constants import N_MFCC
 
 def get_audio_paths(base_dir, start, end):
     """
@@ -30,3 +32,36 @@ def get_sorted_files(data_dir):
     
     files = os.listdir(data_dir)
     return natsort.natsorted(files)
+
+
+def features_to_df(features):
+     # Convert the batch to a DataFrame
+    features_df = pd.DataFrame(
+        features,
+        columns=
+        [f"mean_mfcc_{i}" for i in range(N_MFCC)] + 
+        [f"std_mfcc_{i}" for i in range(N_MFCC)] + 
+        [f"mean_delta_mfcc_{i}" for i in range(N_MFCC)] + 
+        [f"std_delta_mfcc_{i}" for i in range(N_MFCC)] +  
+        ["pitch"]
+        )
+    return features_df
+
+
+
+def save_outputs(results, results_path="output/results.txt", type = 0):
+    """
+    Save prediction results to a text file.
+
+    Args:
+        results (Iterable): List or array of prediction results.
+        results_path (str): Path to save the results file.
+    """
+    os.makedirs(os.path.dirname(results_path), exist_ok=True)
+    if type ==0:
+        with open(results_path, "w") as f:
+            for res in results:
+                f.write(f"{res}\n")
+    else:
+        with open(results_path, "w") as f:
+                f.write(f"{results}\n")
