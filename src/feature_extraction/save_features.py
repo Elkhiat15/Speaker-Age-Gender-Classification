@@ -7,6 +7,7 @@ import torch
 from extract_features import extract_features
 from utils.helper import get_audio_paths
 from preprocessing.audio_cleaning import preprocess_audio
+from constants.constants import N_MFCC
 
 def save_features_in_batches_as_csv(audio_paths, batch_size=32, output_csv='features.csv'):
     """
@@ -40,10 +41,10 @@ def save_features_in_batches_as_csv(audio_paths, batch_size=32, output_csv='feat
             batch_voice_ids.append(voice_id)
 
         # Convert the batch to a DataFrame
-        features_df = pd.DataFrame(batch_features, columns=[f"mean_mfcc_{i}" for i in range(13)] +
-                                                          [f"std_mfcc_{i}" for i in range(13)] +
-                                                          [f"mean_delta_mfcc_{i}" for i in range(13)] +
-                                                          [f"std_delta_mfcc_{i}" for i in range(13)] + ["pitch"])
+        features_df = pd.DataFrame(batch_features, columns=[f"mean_mfcc_{i}" for i in range(N_MFCC)] +
+                                                          [f"std_mfcc_{i}" for i in range(N_MFCC)] +
+                                                          [f"mean_delta_mfcc_{i}" for i in range(N_MFCC)] +
+                                                          [f"std_delta_mfcc_{i}" for i in range(N_MFCC)] + ["pitch"])
         features_df['voice_id'] = batch_voice_ids
 
         # Write to CSV (append if file already exists, otherwise create new file)

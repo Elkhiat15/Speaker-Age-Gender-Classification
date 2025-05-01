@@ -1,0 +1,3 @@
+N_FFT = 1024
+N_MELS = 128
+N_MFCC = 13
