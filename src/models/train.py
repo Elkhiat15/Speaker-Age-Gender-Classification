@@ -8,6 +8,7 @@ from xgboost import XGBClassifier
 from lightgbm import LGBMClassifier
 from constants.constants import RANDOM_STATE, N_NEIGHBORS
 
+
 def get_model(name = 'knn'):
     """
     Get the model based on the name provided.
@@ -31,6 +32,7 @@ def get_model(name = 'knn'):
     else:
         raise ValueError(f"Model {name} not recognized.")
 
+
 def get_pipeline(name = 'knn'):
     """
     Get the pipeline for the specified model.
@@ -47,6 +49,7 @@ def get_pipeline(name = 'knn'):
     )
 
     return pipeline
+
 
 def train_model(pipeline, X_train, y_train):
     """
