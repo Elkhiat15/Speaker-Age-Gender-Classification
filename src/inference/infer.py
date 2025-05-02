@@ -3,9 +3,9 @@ from utils.helper import features_to_df, get_sorted_files, save_outputs, load_mo
 from feature_extraction.extract_features import extract_features
 import argparse
 import os
+from constants.constants import MODEL_PATH
 
-
-def infer(audio_dir, model):
+def infer(audio_dir,output_dir,  model):
     sorted_audio_dir = get_sorted_files(audio_dir)
     print("Sorted audio files:", sorted_audio_dir)
 
@@ -21,15 +21,16 @@ def infer(audio_dir, model):
 
     features_df = features_to_df(features_list)
     prediction = model.predict(features_df)
-    save_outputs(prediction)
+    save_outputs(prediction, f'{output_dir}/results.txt', 0)
+
     return prediction
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--audio_dir", type=str, required=True)
-    parser.add_argument("--model_path", type=str, required=True)
+    parser.add_argument("--output_dir", type=str, required=True)
     args = parser.parse_args()
 
-    model = load_model(args.model_path)
-    infer(args.audio_dir, model)
+    model = load_model(MODEL_PATH)
+    infer(args.audio_dir, args.output_dir, model)

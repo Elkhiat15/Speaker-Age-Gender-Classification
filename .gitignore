@@ -11,10 +11,12 @@ selected_model/*
 test_data/
 test_data/*
 
-speaker_classification.ipynb
-speaker_classification.ipynb/
-output/
-output/*
+data/
+data/*
+
+output_team8/
+output_team8/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
