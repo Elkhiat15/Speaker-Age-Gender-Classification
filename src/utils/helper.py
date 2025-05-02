@@ -25,15 +25,11 @@ def load_model(model_path):
 
 def get_sorted_files(data_dir):
     """
-    Get a list of audio files in natural sorted order (e.g., 1.mp3 before 10.mp3).
-    Args:
-        data_dir (str): Path to directory with audio files.
-    Returns:
-        list: Sorted file paths.
+    Get a list of full paths to audio files in natural sorted order.
     """
-    
-    files = os.listdir(data_dir)
-    return natsort.natsorted(files)
+    files = natsort.natsorted(os.listdir(data_dir))
+    return [os.path.join(data_dir, f) for f in files if f.lower().endswith(('.mp3', '.wav'))]
+
 
 
 def features_to_df(features):

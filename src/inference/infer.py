@@ -12,10 +12,10 @@ def infer(audio_dir,output_dir,  model):
     features_list = []
 
     for audio_file in sorted_audio_dir:
-        audio_path = os.path.join(audio_dir, audio_file)
-        print("Processing audio file:", audio_path)
+        # audio_path = os.path.join(audio_dir, audio_file)
+        print("Processing audio file:", audio_file)
 
-        y, resampled_sr = preprocess_audio(audio_path)
+        y, resampled_sr = preprocess_audio(audio_file)
         features = extract_features(y, resampled_sr)
         features_list.append(features)
 

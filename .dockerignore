@@ -5,8 +5,6 @@ csv_files
 saved_models/
 saved_models/*
 
-selected_model/
-selected_model/*
 
 test_data/
 test_data/*
@@ -19,6 +17,7 @@ output_team8/*
 
 .DS_Store
 *.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
