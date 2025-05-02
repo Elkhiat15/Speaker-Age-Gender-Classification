@@ -6,5 +6,5 @@ RANDOM_STATE = 42
 N_NEIGHBORS = 5
 MODEL_PATH = "src/selected_model/knn_base_40.pkl"
 
-OUTPUT_DIR = "output_team8"
+OUTPUT_DIR = "output"
 AUDIO_DIR = "data"

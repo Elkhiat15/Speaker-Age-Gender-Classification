@@ -3,6 +3,8 @@ import joblib
 import natsort
 import pandas as pd
 from constants.constants import N_MFCC
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
 
 def get_audio_paths(base_dir, start, end):
     """
@@ -23,15 +25,11 @@ def load_model(model_path):
 
 def get_sorted_files(data_dir):
     """
-    Get a list of audio files in natural sorted order (e.g., 1.mp3 before 10.mp3).
-    Args:
-        data_dir (str): Path to directory with audio files.
-    Returns:
-        list: Sorted file paths.
+    Get a list of full paths to audio files in natural sorted order.
     """
-    
-    files = os.listdir(data_dir)
-    return natsort.natsorted(files)
+    files = natsort.natsorted(os.listdir(data_dir))
+    return [os.path.join(data_dir, f) for f in files if f.lower().endswith(('.mp3', '.wav'))]
+
 
 
 def features_to_df(features):
@@ -65,3 +63,17 @@ def save_outputs(results, results_path="output/results.txt", type = 0):
     else:
         with open(results_path, "w") as f:
                 f.write(f"{results}\n")
+
+
+def get_splitted_data(X, y, df, target):
+    """
+    Splits the data into train, validation, and test sets.
+    """
+    X = df.drop(columns=['label', 'gender', 'age', 'voice_id'])
+    y = df[target]
+    le = LabelEncoder()
+    y = le.fit_transform(y)
+    X_val_train, X_test, y_val_train, y_test = train_test_split(X, y, test_size=0.15, random_state=42, stratify=y)
+    X_train, X_val, y_train, y_val = train_test_split(X_val_train, y_val_train, test_size=0.18, random_state=42, stratify=y_val_train)
+
+    return X_train, X_val, y_train, y_val

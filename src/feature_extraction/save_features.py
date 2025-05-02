@@ -2,8 +2,6 @@ import os
 import time
 from tqdm import tqdm
 import pandas as pd
-import torch
-
 from extract_features import extract_features
 from utils.helper import get_audio_paths
 from preprocessing.audio_cleaning import preprocess_audio
