@@ -14,4 +14,4 @@ AGE_MODEL_PATH = "src/selected_model/knn_age.pkl"
 GENDER_MODEL_PATH = "src/selected_model/gender_lgbm_model.pkl"
 
 OUTPUT_DIR = "output"
-AUDIO_DIR = "test_data"
+AUDIO_DIR = "data"
