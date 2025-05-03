@@ -3,9 +3,9 @@ import time
 from tqdm import tqdm
 import pandas as pd
 from extract_features import extract_features
-from utils.helper import get_audio_paths
+from utils.helper import get_audio_paths, features_to_df
 from preprocessing.audio_cleaning import preprocess_audio
-from constants.constants import N_MFCC
+from constants.constants import N_MFCC, N_CHROMA, N_SC
 
 def save_features_in_batches_as_csv(audio_paths, batch_size=32, output_csv='features.csv'):
     """
@@ -37,13 +37,9 @@ def save_features_in_batches_as_csv(audio_paths, batch_size=32, output_csv='feat
             voice_id = os.path.basename(audio_path)
             batch_voice_ids.append(voice_id)
 
-        # Convert the batch to a DataFrame
-        features_df = pd.DataFrame(batch_features, columns=[f"mean_mfcc_{i}" for i in range(N_MFCC)] +
-                                                          [f"std_mfcc_{i}" for i in range(N_MFCC)] +
-                                                          [f"mean_delta_mfcc_{i}" for i in range(N_MFCC)] +
-                                                          [f"std_delta_mfcc_{i}" for i in range(N_MFCC)] + ["pitch"])
+        # Convert the batch of features to a DataFrame
+        features_df = features_to_df(batch_features)
         features_df['voice_id'] = batch_voice_ids
-
         # Write to CSV (append if file already exists, otherwise create new file)
         mode = 'a' if header_written else 'w'
         header = not header_written

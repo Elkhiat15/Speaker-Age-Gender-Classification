@@ -13,9 +13,9 @@ def evaluate_binary(model, X, y):
     confusion = confusion_matrix(y, y_pred)
 
     if type == 0:
-        print("\n\nnTRAINING TESTING RESULTS: \n===============================")
+        print("\n\nTRAINING RESULTS: \n===============================")
     elif type == 1:
-        print("\n\VALIDATION RESULTS: \n===============================")
+        print("\n\nVALIDATION RESULTS: \n===============================")
     elif type == 2:
         print("\n\nTESTING RESULTS: \n===============================")
     else:

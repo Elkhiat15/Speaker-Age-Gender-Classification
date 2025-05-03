@@ -12,7 +12,7 @@ def extract_features(y, sr):
 
     Returns:
         np.ndarray: A 1D array containing the concatenated features 
-                    (mean MFCC, std MFCC, mean delta MFCC, std delta MFCC, pitch).
+                    (mean MFCC, std MFCC, mean delta MFCC, std delta MFCC, chroma, spectral_contrast, ... pitch).
     """
 
     # MFCCs
@@ -26,12 +26,20 @@ def extract_features(y, sr):
     mask = magnitudes > np.median(magnitudes)
     pitch = np.mean(pitches[mask]) if np.any(mask) else 0.0
 
-    # Feature vector
+    chroma = librosa.feature.chroma_stft(y=y, sr=sr)
+    spectral_contrast = librosa.feature.spectral_contrast(y=y, sr=sr)
+    zcr = librosa.feature.zero_crossing_rate(y)
+    rms = librosa.feature.rms(y=y)
+
     features = np.concatenate([
         np.mean(mfcc, axis=1),
         np.std(mfcc, axis=1),
         np.mean(mfcc_delta, axis=1),
         np.std(mfcc_delta, axis=1),
+        np.mean(chroma, axis=1),
+        np.mean(spectral_contrast, axis=1),
+        np.mean(zcr, axis=1),
+        np.mean(rms, axis=1), 
         [pitch]
     ])
 

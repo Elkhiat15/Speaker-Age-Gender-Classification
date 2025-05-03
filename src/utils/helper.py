@@ -2,7 +2,7 @@ import os
 import joblib
 import natsort
 import pandas as pd
-from constants.constants import N_MFCC
+from constants.constants import N_MFCC, N_CHROMA, N_SC
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 
@@ -34,15 +34,18 @@ def get_sorted_files(data_dir):
 
 def features_to_df(features):
      # Convert the batch to a DataFrame
-    features_df = pd.DataFrame(
-        features,
-        columns=
-        [f"mean_mfcc_{i}" for i in range(N_MFCC)] + 
-        [f"std_mfcc_{i}" for i in range(N_MFCC)] + 
-        [f"mean_delta_mfcc_{i}" for i in range(N_MFCC)] + 
-        [f"std_delta_mfcc_{i}" for i in range(N_MFCC)] +  
-        ["pitch"]
+    features_df = pd.DataFrame(features, 
+                        columns=[f"mean_mfcc_{i}" for i in range(N_MFCC)] +
+                                [f"std_mfcc_{i}" for i in range(N_MFCC)] +
+                                [f"mean_delta_mfcc_{i}" for i in range(N_MFCC)] +
+                                [f"std_delta_mfcc_{i}" for i in range(N_MFCC)] + 
+                                [f"chroma_{i}" for i in range(N_CHROMA)] + 
+                                [f"spectral_contrast_{i}" for i in range(N_SC)] + 
+                                ['zcr']+
+                                ['rms']+
+                                ["pitch"]
         )
+    
     return features_df
 
 
