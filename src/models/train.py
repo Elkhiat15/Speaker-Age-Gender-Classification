@@ -10,6 +10,7 @@ from lightgbm import LGBMClassifier
 from constants.constants import RANDOM_STATE, N_NEIGHBORS
 
 
+
 def get_model(name = 'knn'):
     """
     Get the model based on the name provided.
@@ -26,10 +27,14 @@ def get_model(name = 'knn'):
         return GradientBoostingClassifier(random_state=RANDOM_STATE)
     elif name == 'svm':
         return SVC(kernel='rbf')
-    elif name == 'xgb':
-        return XGBClassifier(eval_metric='mlogloss', objective='multi:softprob',num_class=4)
-    elif name == 'lgbm':
-        return LGBMClassifier(objective='multiclass', num_class=4, random_state=RANDOM_STATE)
+    elif name == 'xgb-binary':
+        return XGBClassifier(eval_metric='logloss', objective='binary:logistic', random_state=RANDOM_STATE)
+    elif name == 'lgbm-binary':
+        return LGBMClassifier(objective='binary', verbose = -1 , random_state=RANDOM_STATE)
+    elif name == 'xgb-multi':
+        return XGBClassifier(eval_metric='mlogloss', objective='multi:softprob',num_class=4, random_state=RANDOM_STATE)
+    elif name == 'lgbm-multi':
+        return LGBMClassifier(objective='multiclass', num_class=4, verbose = -1 , random_state=RANDOM_STATE)
     else:
         raise ValueError(f"Model {name} not recognized.")
 

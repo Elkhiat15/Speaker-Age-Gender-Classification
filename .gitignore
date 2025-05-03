@@ -14,8 +14,8 @@ test_data/*
 data/
 data/*
 
-output_team8/
-output_team8/*
+output/
+output/*
 
 .DS_Store
 *.DS_Store

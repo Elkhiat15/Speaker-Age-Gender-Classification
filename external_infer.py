@@ -3,6 +3,10 @@ import time
 import argparse
 from src.utils.helper import save_outputs
 from src.constants.constants import AUDIO_DIR, OUTPUT_DIR
+import numpy as np
+
+np.random.seed(42)
+
 
 def external_infer(audio_dir, output_dir):
     """
