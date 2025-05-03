@@ -1,7 +1,7 @@
 numpy
 pandas 
 librosa 
-scikit-learn 
+scikit-learn
 tqdm
 xgboost
 lightgbm
