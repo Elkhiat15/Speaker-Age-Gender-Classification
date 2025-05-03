@@ -7,5 +7,5 @@ xgboost
 lightgbm
 natsort
 streamlit
-
+-e .
 -e ./src
