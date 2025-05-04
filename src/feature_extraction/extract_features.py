@@ -17,7 +17,7 @@ def extract_features(y, sr):
 
     # MFCCs
     mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=N_MFCC, n_fft=N_FFT, n_mels=N_MELS)
-
+ 
     # Delta MFCCs
     mfcc_delta = librosa.feature.delta(mfcc)
 

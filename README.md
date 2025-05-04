@@ -70,7 +70,7 @@ After downloading, place the folder `selected_model` inside the `src/` directory
 
 - Download the models from the Drive link above and place them into src/selected_model/
 
-Put a `data` folder that contains the test audios inside `src` directory and then run `external_infer.py`   
+Put a `data` folder that contains the test audios in the same directory of `external_infer.py` and then run `external_infer.py`   
 
 
 # 🐳 Option 2: Run with Docker
